@@ -1,3 +1,18 @@
 {
-    "movies":[]
+  "movies": [
+    {
+      "title": "Inception",
+      "director": "Christopher Nolan",
+      "rating": 10,
+      "review": "Even better on second watch!",
+      "id": 1
+    },
+    {
+      "title": "The Matrix",
+      "director": "Lana Wachowski, Lilly Wachowski",
+      "rating": 10,
+      "review": "Revolutionary sci-fi that changed cinema forever",
+      "id": 2
+    }
+  ]
 }
