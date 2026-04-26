@@ -101,4 +101,30 @@ const server = http.createServer((req, res) =>{
             }
         });
     }
-})
+    else if (req.url.match(/^\/movies\/([0-9]+)$/) && req.method === 'DELETE'){
+        const id=parseInt(req.url.split('/')[2]);
+        const movies = readMoviesFromFile();
+        const index = movies.findIndex(m=> m.id === id);
+
+        if(index!== -1){
+            movies.splice(index, 1);
+            writeMoviesToFile(movies);
+            res.end(JSON.stringify({message: 'Movie deleted successfully'}));
+        }
+        else{
+            res.writeHead(404, {'Content-Type': 'text/plain'});
+            res.end('Movie not found');
+        }
+    }
+
+    else{
+        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.end('Route not found');
+    }
+});
+
+const PORT = 3000;
+server.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Try: http://localhost:${PORT}/movies`);
+});
